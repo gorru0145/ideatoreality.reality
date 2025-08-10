@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface PostSummaryDataService {
 
-    public List<UserPostSummarydto> getAllSummaries() ;
+    public List<UserPostSummarydto> getAllSummaries(Long userId) ;
 
 }

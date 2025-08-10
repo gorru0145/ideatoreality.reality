@@ -34,7 +34,7 @@ public class PostCommentServiceImpl implements PostCommentService {
         postComment.setPost(postDataMapper.toEntity(postCommentdto.getPost()));
         postComment.setUser(userDetailsMapper.toEntity(postCommentdto.getUser()));
         postCommentRepository.save(postComment);
-        return postSummaryDataService.getAllSummaries();
+        return postSummaryDataService.getAllSummaries(postCommentdto.getUser().getId());
     }
 
     @Override
@@ -45,17 +45,15 @@ public class PostCommentServiceImpl implements PostCommentService {
             foundresult.get().setUpdateDateTime(postCommentdto.getUpdateDateTime());
             postCommentRepository.save(foundresult.get());
         }
-        return postSummaryDataService.getAllSummaries();
+        return postSummaryDataService.getAllSummaries(postCommentdto.getUser().getId());
     }
 
     @Override
-    public List<UserPostSummarydto> deletecomment(Long pcid) {
-        Optional<PostComment> foundresult=postCommentRepository.findById(pcid);
+    public boolean deletecomment(Long pcid) {
+        postCommentRepository.deleteById(pcid);
+        return true;
 
-        if(foundresult.isPresent()){
-            postCommentRepository.delete(foundresult.get());
-        }
-        return postSummaryDataService.getAllSummaries();
+
     }
 
 

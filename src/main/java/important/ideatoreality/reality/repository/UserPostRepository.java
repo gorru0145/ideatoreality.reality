@@ -2,6 +2,7 @@ package important.ideatoreality.reality.repository;
 
 import important.ideatoreality.reality.dto.Commentdto;
 import important.ideatoreality.reality.dto.UserPostSummarydto;
+import important.ideatoreality.reality.dto.postlikesdto;
 import important.ideatoreality.reality.model.User_Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -28,6 +29,11 @@ public interface UserPostRepository extends JpaRepository<User_Post,Long> {
     @Query("SELECT new important.ideatoreality.reality.dto.Commentdto(c.pcid,c.comment, c.updateDateTime,c.user.id) " +
             "FROM PostComment c WHERE c.post.pid = :postId")
     List<Commentdto> fetchCommentsByPostId(@Param("postId") Long postId);
+
+    @Query("SELECT new important.ideatoreality.reality.dto.postlikesdto(u.id) " +
+            "FROM User_Post p JOIN p.likes u " +
+            "WHERE p.pid = :postId")
+    List<postlikesdto> fetchLikesByPost(@Param("postId") Long postId);
 
 
 

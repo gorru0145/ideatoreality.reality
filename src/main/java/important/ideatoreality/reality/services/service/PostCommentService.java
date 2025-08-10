@@ -11,6 +11,6 @@ public interface PostCommentService {
 
     public List<UserPostSummarydto> updatecomment(PostCommentdto postCommentdto);
 
-    public List<UserPostSummarydto> deletecomment( Long pcid);
+    public boolean deletecomment( Long pcid);
 
 }

@@ -13,7 +13,8 @@ public class UserPostSummarydto {
     private String postData;
     private String postTags;
     private String imageLocation;
-    private List<Commentdto> comments;//nested list
+    private List<Commentdto> comments;
+    private boolean likeduserid;//nested list
     private int likeCount;
     private String[] tagsArray;
 
@@ -32,7 +33,13 @@ public class UserPostSummarydto {
 
     }
 
-    // Getters
+    public boolean getLikeduserid() {
+        return likeduserid;
+    }
+
+    public void setLikeduserid(boolean likeduserid) {
+        this.likeduserid = likeduserid;
+    }
 
     public String[] getTagsArray() {
         return tagsArray;

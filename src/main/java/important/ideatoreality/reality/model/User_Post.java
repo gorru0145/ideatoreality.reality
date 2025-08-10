@@ -30,6 +30,11 @@ public class User_Post {
     private List<PostComment> comments = new ArrayList<>();
 
     @ManyToMany
+    @JoinTable(
+            name = "post_likes",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     private List<UserDetails> likes=new ArrayList<>() ;
 
 

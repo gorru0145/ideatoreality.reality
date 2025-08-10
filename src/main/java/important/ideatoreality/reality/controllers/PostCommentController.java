@@ -26,7 +26,7 @@ public class PostCommentController {
     }
 
     @DeleteMapping("/delete/{postcommentid}")
-    public List<UserPostSummarydto> deletecomment(@PathVariable Long postcommentid)throws Exception{
+    public boolean deletecomment(@PathVariable Long postcommentid)throws Exception{
         return postCommentService.deletecomment(postcommentid);
     }
 

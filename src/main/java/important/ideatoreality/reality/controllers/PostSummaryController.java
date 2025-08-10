@@ -4,6 +4,7 @@ import important.ideatoreality.reality.dto.UserPostSummarydto;
 import important.ideatoreality.reality.services.service.PostSummaryDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,9 +16,9 @@ public class PostSummaryController {
     @Autowired
     private PostSummaryDataService summaryService;
 
-    @GetMapping("/")
-    public List<UserPostSummarydto> getPostSummary()throws Exception {
-        return summaryService.getAllSummaries();
+    @GetMapping("/{userid}")
+    public List<UserPostSummarydto> getPostSummary(@PathVariable Long userid)throws Exception {
+        return summaryService.getAllSummaries(userid);
     }
 
 

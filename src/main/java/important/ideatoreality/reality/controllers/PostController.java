@@ -18,7 +18,7 @@ public class PostController {
     PostsDataService postsDataService;
 
     @PostMapping()
-    public List<UserPostSummarydto> createpost(@RequestBody UserPostdto userPostdto){
+    public boolean createpost(@RequestBody UserPostdto userPostdto){
         return postsDataService.createpost(userPostdto);
     }
 

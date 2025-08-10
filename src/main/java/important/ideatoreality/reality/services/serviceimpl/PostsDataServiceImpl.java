@@ -30,12 +30,11 @@ public class PostsDataServiceImpl  implements PostsDataService {
     UserDetailsMapper userDetailsMapper;
 
     @Override
-    public List<UserPostSummarydto> createpost(UserPostdto userPostdto) {
+    public boolean createpost(UserPostdto userPostdto) {
         User_Post userPost=postDataMapper.toEntity(userPostdto);
         userPost.setUser(userDetailsMapper.toEntity(userPostdto.getUser()));
         User_Post result=postsRepository.save(userPost);
-        List<UserPostSummarydto> postdetails=postSummaryDataService.getAllSummaries();
-        return postdetails;
+        return result != null ? true : false;
     }
 
     @Override
@@ -74,7 +73,7 @@ public class PostsDataServiceImpl  implements PostsDataService {
             }
             User_Post result=postsRepository.save(post.get());
 
-            return postSummaryDataService.getAllSummaries();
+            return postSummaryDataService.getAllSummaries(userId);
         }
         return null;
     }

@@ -3,6 +3,7 @@ package important.ideatoreality.reality;
 import important.ideatoreality.reality.JWT.JwtAuthFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -26,8 +27,8 @@ public class SecurityConfig {
 
     @Autowired
     private CustomOAuth2SuccessHandler successHandler;
-
-
+    @Value("${frontend.url}")
+    private String frontendurl;
     @Autowired
     private JwtAuthFilter jwtAuthFilter;
     @Bean
@@ -50,8 +51,9 @@ public class SecurityConfig {
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
+
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of("http://localhost:4200")); // your frontend
+        config.setAllowedOrigins(List.of(frontendurl)); // your frontend
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true); // only if using cookies
