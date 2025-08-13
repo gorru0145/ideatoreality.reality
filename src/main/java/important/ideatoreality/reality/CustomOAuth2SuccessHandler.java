@@ -62,9 +62,9 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             // Create HttpOnly JWT cookie
             ResponseCookie cookie = ResponseCookie.from("jwt", jwt)
                     .httpOnly(true)
-                    .secure(false) // Set to true in production
+                    .secure(true) // Set to true in production
                     .path("/")
-                    .sameSite("Lax")
+                    .sameSite("None")
                     .maxAge(3600)
                     .build();
 

@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
@@ -27,9 +28,12 @@ public class AuthController {
     @Autowired
     UserDetailsService userDetailsService;
 
+    @Value("${frontend.url}")
+    private String frontendurl;
+
     @GetMapping("/auth/callback")
     public void redirectToFrontend(HttpServletResponse response) throws IOException {
-        response.sendRedirect("http://localhost:4200/auth-handler"); // Your Angular route
+        response.sendRedirect(frontendurl+"/auth-handler"); // Your Angular route
     }
 
     @GetMapping("/api/auth/check")
